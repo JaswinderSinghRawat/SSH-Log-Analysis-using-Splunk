@@ -36,10 +36,80 @@ By completing this project, I developed practical skills in ingesting SSH logs i
    - `auth_attempts`
    - `id.orig_h` *(source IP address)*
    - `id.resp_h` *(destination host)*
-3. Run the following validation search to confirm successful ingestion and parsing:
+3. **Validation Query:**
+I used the following SPL query to confirm that logs were successfully indexed and the `event_type` field was populated correctly:
 ```spl
 source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json"
 | stats count by event_type
 ```
+### Step 2: Analyze Failed SSH Login Attempts
 
+Identify all failed SSH login attempts:
+
+```spl
+source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_type="Failed SSH Login"
+| stats count by id.orig_h
+```
+
+- Highlight the top 10 source IP addresses generating failed login attempts.
+- Create a bar chart visualization showing failed login attempts per source IP.
+
+### Step 3: Detect Multiple Failed Authentication Attempts (Brute Force)
+
+Search for multiple failed authentication attempts in SSH logs:
+
+```spl
+source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_type="Multiple Failed Authentication Attempts"
+| stats count by id.orig_h, id.resp_h
+```
+
+Detect repeated failures (e.g., more than 5 attempts).
+
+Configure a Splunk alert:
+- Trigger when any source IP attempts more than 5 login attempts within a 10-minute window.
+
+---
+
+### Step 4: Track Successful SSH Logins
+
+Search for successful SSH login events:
+
+```spl
+source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_type="Successful SSH Login"
+| stats count by id.orig_h, id.resp_h
+```
+
+- Compare successful logins against prior failed attempts to identify potentially compromised accounts.
+- Create a dashboard panel displaying the top source IPs for successful SSH logins.
+
+### Step 5: Spot Suspicious Connections Without Authentication
+
+Search for unauthenticated SSH connections:
+
+```spl
+source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_type="Connection Without Authentication"
+| stats count by id.orig_h
+```
+
+Create a timechart visualization to monitor unauthenticated SSH connections over time:
+
+```spl
+source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_type="Connection Without Authentication"
+| timechart count by id.orig_h
+```
+
+- Identify repeated unauthenticated connection attempts, which may indicate SSH probing or port scanning activity.
+
+---
+
+## Conclusion
+
+By the end of this project, I was able to:
+
+- Build dashboards to monitor SSH activity.
+- Identify brute-force login attempts and other suspicious access patterns.
+- Configure Splunk alerts for high-risk behavior.
+- Parse, search, visualize, and alert on SSH logs using Splunk.
+
+This project demonstrates practical SOC Analyst–level log analysis skills and strengthens my cybersecurity portfolio.
 
