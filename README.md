@@ -12,7 +12,7 @@ By completing this project, I developed practical skills in ingesting SSH logs i
 * Download SSH Logs File > [ssh\_logs.json](https://github.com/JaswinderSinghRawat/SSH-Log-Analysis-using-Splunk/blob/61454b49e12bd6e8ef386619a9f23d4b29af91ed/ssh_logs.json)
 
 ## Step-by-Step Guide
-### Step 1: Log Ingestion in Splunk
+### 📥Step 1: Log Ingestion in Splunk
 
 In this step, I ingested SSH log data into Splunk to begin the analysis process.
 
@@ -29,7 +29,7 @@ In this step, I ingested SSH log data into Splunk to begin the analysis process.
    [![SSH Log Analysis using Splunk Demo](https://i.ytimg.com/vi/gjINdGCkGZg/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgALCBYoCDAgAEAEYZiBmKGYwDw==&rs=AOn4CLB75dWk4w-PL6PDwWzjcTIbtHSDJA)](https://youtu.be/gjINdGCkGZg?si=6HMm2EaTdn_N6Zn4)
 
 
-### STEP 2 : Parse & Field Validation
+### 🧩STEP 2 : Parse & Field Validation
 
 In this step, I parsed the SSH logs to ensure that all important fields were extracted correctly.  
 This was necessary to perform accurate analysis and detection in the later steps.
@@ -49,7 +49,7 @@ source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json"
  
  Note This : `id.orig_h` *(source IP address)* , `id.resp_h` *(destination host)*
  
-### Step 3: Analyze Failed SSH Login Attempts
+### 📊Step 3: Analyze Failed SSH Login Attempts
 
 In this step, I analyzed failed SSH login attempts to identify potential brute-force or password-guessing activity.
 This analysis helps in understanding which source IPs are repeatedly attempting to access the system.
@@ -63,7 +63,7 @@ source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_typ
 
   [![SSH Log Analysis using Splunk Demo](https://i.ytimg.com/vi/dRrHTqSDAEM/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgAKiBYoCDAgAEAEYTiBeKGUwDw==&rs=AOn4CLBXp9xSIXBnhuStVYsFNy8ZoAOcnA)](https://www.youtube.com/watch?v=dRrHTqSDAEM&list=PLHM71OGMoBDM_wg7MvMeaIa0sG5KZEw0c&index=3)
  
-### Step 4: Detect Multiple Failed Authentication Attempts (Brute Force)
+### 🚨Step 4: Detect Multiple Failed Authentication Attempts (Brute Force)
 
 In this step, I analyzed SSH logs to detect multiple failed authentication attempts, which may indicate a brute-force attack.
 This helps in identifying source IPs that repeatedly try to authenticate within a short time period.
@@ -83,7 +83,7 @@ Detect repeated failures (e.g., more than 5 attempts).
 Configure a Splunk alert:
 - Trigger when any source IP attempts more than 5 login attempts within a 10-minute window. see in next step
 
-### Step 5: Creating Alert for Brute Force Attempts
+### 🔔Step 5: Creating Alert for Brute Force Attempts
 
 In this step, I created a Splunk alert to detect possible SSH brute-force attacks.
 
@@ -97,7 +97,7 @@ This alert helps in automatically identifying suspicious SSH activity without ma
   
    [![SSH Log Analysis using Splunk Demo](https://i.ytimg.com/vi/e3I6902dTBc/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgAKkBYoCDAgAEAEYUCBbKGUwDw==&rs=AOn4CLDe1D3TLCOSsK5T-Ng42KM8BvcLHw)](https://www.youtube.com/watch?v=e3I6902dTBc&list=PLHM71OGMoBDM_wg7MvMeaIa0sG5KZEw0c&index=5)
 
-### Step 6: Track Successful SSH Logins
+### ✅Step 6: Track Successful SSH Logins
 
 In this step, I analyzed successful SSH login events to understand normal access patterns and identify suspicious behavior.
 This helps in checking whether any successful login occurred after multiple failed attempts, which may indicate a compromised account.
@@ -116,7 +116,7 @@ source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_typ
 
    [![SSH Log Analysis using Splunk Demo](https://i.ytimg.com/vi/r9PXSoIFwUw/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgAKSBYoCDAgAEAEYTyBaKGUwDw==&rs=AOn4CLBL2HHfTE0H1JtKy7MgVj6D2PwgPw)](https://www.youtube.com/watch?v=r9PXSoIFwUw&list=PLHM71OGMoBDM_wg7MvMeaIa0sG5KZEw0c&index=6)
 
-### Step 7: Spot Suspicious Connections Without Authentication
+### 🕵️Step 7: Spot Suspicious Connections Without Authentication
 
 In this step, I analyzed SSH connections that were established without successful authentication.
 Such activity may indicate SSH probing, scanning attempts, or incomplete connection sessions.
