@@ -1,3 +1,4 @@
+# SSH Log Analysis using Splunk - Project
 ## Objective
 The goal of this project is to analyze SSH authentication logs to detect unauthorized access attempts, abnormal login behavior, and potential SSH brute-force attacks.
 - **Successful SSH logins** (who connected, from where)
