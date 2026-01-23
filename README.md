@@ -62,6 +62,7 @@ source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_typ
 | stats count by id.orig_h
 ```
    _In this video, I demonstrate how I analyzed failed SSH login attempts and identified source IPs using Splunk._
+   
   [![SSH Log Analysis using Splunk Demo](https://i.ytimg.com/vi/dRrHTqSDAEM/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgAKiBYoCDAgAEAEYTiBeKGUwDw==&rs=AOn4CLBXp9xSIXBnhuStVYsFNy8ZoAOcnA)](https://www.youtube.com/watch?v=dRrHTqSDAEM&list=PLHM71OGMoBDM_wg7MvMeaIa0sG5KZEw0c&index=3)
  
 ### 🚨Step 4: Detect Multiple Failed Authentication Attempts (Brute Force)
