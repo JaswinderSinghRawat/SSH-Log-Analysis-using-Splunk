@@ -10,8 +10,8 @@ By completing this project, I developed practical skills in ingesting SSH logs i
 
 
 ## Lab Setup & Pre-requisite
-* Download SSH Logs File > [ssh\_logs.json](https://github.com/JaswinderSinghRawat/SSH-Log-Analysis-using-Splunk/blob/61454b49e12bd6e8ef386619a9f23d4b29af91ed/ssh_logs.json)
-
+- Splunk (Enterprise or Free edition) installed and running
+- SSH logs file: [ssh\_logs.json](https://github.com/JaswinderSinghRawat/SSH-Log-Analysis-using-Splunk/blob/61454b49e12bd6e8ef386619a9f23d4b29af91ed/ssh_logs.json)
 ## Step-by-Step Guide
 ### 📥Step 1: Log Ingestion in Splunk
 
@@ -61,7 +61,7 @@ I used the following SPL query to identify failed SSH login attempts by source I
 source="ssh_logs.json" host="Acer" index="ssh_logs" sourcetype="_json" event_type="Failed SSH Login"
 | stats count by id.orig_h
 ```
-
+   _In this video, I demonstrate how I analyzed failed SSH login attempts and identified source IPs using Splunk._
   [![SSH Log Analysis using Splunk Demo](https://i.ytimg.com/vi/dRrHTqSDAEM/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgAKiBYoCDAgAEAEYTiBeKGUwDw==&rs=AOn4CLBXp9xSIXBnhuStVYsFNy8ZoAOcnA)](https://www.youtube.com/watch?v=dRrHTqSDAEM&list=PLHM71OGMoBDM_wg7MvMeaIa0sG5KZEw0c&index=3)
  
 ### 🚨Step 4: Detect Multiple Failed Authentication Attempts (Brute Force)
